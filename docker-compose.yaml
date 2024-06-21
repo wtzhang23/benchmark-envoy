@@ -1,0 +1,37 @@
+services:
+  client:
+    build: .
+    networks:
+      - test
+    command:
+      - client
+      - --addr
+      - envoy:10000
+      - --uri
+      - http://server/
+      - --time
+      - 10s
+      - --rps
+      - "3000"
+    cpuset: "4-31"
+  server:
+    build: .
+    networks:
+      - test
+    command:
+      - server
+      - --addr
+      - 0.0.0.0:8080
+  envoy:
+    image: envoyproxy/envoy:distroless-v1.30-latest
+    volumes:
+      - ./envoy-configs:/envoy-configs
+    command:
+      - -c
+      - /envoy-configs/direct.yaml
+    networks:
+      - test
+    cpuset: "0-3"
+networks:
+  test:
+    name: benchmark-envoy
