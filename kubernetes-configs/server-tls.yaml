@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server
+  namespace: test
+  labels:
+    app: server
+spec:
+  selector:
+    matchLabels:
+      app: server
+  template:
+    metadata:
+      labels:
+        app: server
+      annotations:
+        "sidecar.istio.io/userVolume": '{"tls": {"secret": {"secretName": "test-tls"}}}'
+        "sidecar.istio.io/userVolumeMount": '{"tls": {"mountPath": "/etc/certs"}}'
+    spec:
+      containers:
+      - name: benchmark-envoy
+        image: benchmark-envoy/benchmark-envoy:latest
+        imagePullPolicy: IfNotPresent
+        args:
+        - server
+        - --addr
+        - 0.0.0.0:80
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: server
+  namespace: test
+spec:
+  selector:
+    app: server
+  ports:
+    - protocol: TCP
+      port: 80
+---
+apiVersion: networking.istio.io/v1
+kind: Sidecar
+metadata:
+  name: server
+  namespace: test
+spec:
+  workloadSelector:
+    labels:
+      app: server
+  ingress:
+  - port:
+      number: 443
+      protocol: HTTPS
+      name: external
+    defaultEndpoint: 0.0.0.0:80
+    tls:
+      mode: SIMPLE
+      privateKey: "/etc/certs/tls.key"
+      serverCertificate: "/etc/certs/tls.crt"
+  - port:
+      number: 80
+      protocol: HTTP2
+      name: internal
+    defaultEndpoint: 0.0.0.0:80
+  egress:
+  - hosts:
+    - "*/*"

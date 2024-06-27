@@ -1,5 +1,7 @@
 use std::{
     convert::Infallible,
+    num::NonZeroUsize,
+    sync::{Arc, Mutex},
     time::{Duration, Instant},
 };
 
@@ -18,6 +20,7 @@ use rand::prelude::*;
 use tokio::{
     net::{TcpListener, TcpStream},
     select,
+    time::MissedTickBehavior,
 };
 
 #[derive(Debug, clap::Parser)]
@@ -39,6 +42,10 @@ enum Mode {
         time: Option<Duration>,
         #[clap(short, long, default_value_t = 1024)]
         rps: usize,
+        #[clap(value_parser = humantime::parse_duration, short, long, default_value="1s")]
+        batch_period: Duration,
+        #[clap(short, long, default_value = "1")]
+        pool_size: NonZeroUsize,
     },
     Server {
         #[clap(short, long, default_value = "127.0.0.1:8080")]
@@ -60,16 +67,24 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
             payload_size,
             time,
             rps,
+            batch_period,
+            pool_size,
         } => {
             let mut hist = Histogram::<u64>::new(5).unwrap();
             let mut body = vec![0; payload_size];
             thread_rng().fill_bytes(&mut body);
-            let tcp_conn = TcpStream::connect(addr).await?;
-            let (mut send_req, conn) = client::conn::http2::Builder::new(TokioExecutor::new())
-                .max_concurrent_reset_streams(usize::MAX)
-                .handshake(TokioIo::new(tcp_conn))
-                .await?;
-            tokio::spawn(conn);
+            let mut pool = Vec::new();
+            let mut round_robin_idx = 0;
+            for _ in 0..pool_size.get() {
+                let tcp_conn = TcpStream::connect(addr.clone()).await?;
+                let (send_req, conn) = client::conn::http2::Builder::new(TokioExecutor::new())
+                    .max_concurrent_reset_streams(usize::MAX)
+                    .handshake(TokioIo::new(tcp_conn))
+                    .await?;
+                let send_req = Arc::new(Mutex::new(send_req));
+                tokio::spawn(conn);
+                pool.push(send_req);
+            }
             let req = Request::builder()
                 .method(Method::GET)
                 .uri(uri)
@@ -78,24 +93,37 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
                 .map(|t| Either::Left(tokio::time::sleep(t)))
                 .unwrap_or(Either::Right(futures::future::pending::<()>()));
             tokio::pin!(time);
-            loop {
-                let second_delay = tokio::time::sleep(Duration::from_secs(1));
-                let resp_futures: Vec<_> = std::iter::repeat(())
-                    .take(rps)
-                    .map(|_| {
+            let mut i = 0;
+            let req_period = Duration::from_secs_f64(1f64 / (rps as f64));
+            let mut interval = tokio::time::interval(batch_period);
+            interval.set_missed_tick_behavior(MissedTickBehavior::Burst);
+
+            for batch_idx in 1.. {
+                interval.tick().await;
+                let threshold = batch_idx * batch_period;
+                let mut resp_futs = Vec::new();
+
+                while req_period * i < threshold {
+                    let req = req.clone();
+                    let send_req = pool[round_robin_idx % pool.len()].clone();
+                    round_robin_idx += 1;
+                    resp_futs.push(async move {
                         let start = Instant::now();
-                        let resp_fut = send_req.send_request(req.clone());
-                        async move { (resp_fut.await, start.elapsed()) }
-                    })
-                    .collect();
+                        let resp_fut = { send_req.lock().unwrap().send_request(req) };
+                        let resp = resp_fut.await;
+                        (resp, start.elapsed())
+                    });
+                    i += 1;
+                }
+
                 let all_res = select! {
-                    _ = &mut ctrl_c => {
-                        break;
-                    },
+                    all_res = futures::future::join_all(resp_futs) => all_res,
                     _ = &mut time => {
-                        break;
-                    },
-                    res = futures::future::join_all(resp_futures) => res,
+                        return Ok(());
+                    }
+                    _ = &mut ctrl_c => {
+                        return Ok(());
+                    }
                 };
                 for (res, elapsed) in all_res {
                     match res {
@@ -115,15 +143,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
                     }
                     hist.record(elapsed.as_nanos().try_into()?)?;
                 }
-                select! {
-                    _ = &mut ctrl_c => {
-                        break;
-                    },
-                    _ = &mut time => {
-                        break;
-                    },
-                    _ = second_delay => {}
-                };
                 println!(
                     "p50: {}, p90: {}, p99: {}",
                     humantime::format_duration(Duration::from_nanos(hist.value_at_quantile(0.50))),

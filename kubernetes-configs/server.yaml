@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: server
-  namespace: default
+  namespace: test
   labels:
     app: server
 spec:
@@ -29,9 +29,14 @@ apiVersion: v1
 kind: Service
 metadata:
   name: server
+  namespace: test
 spec:
   selector:
     app: server
   ports:
-    - protocol: TCP
+    - name: http
+      protocol: TCP
       port: 80
+    - name: https
+      protocol: TCP
+      port: 443

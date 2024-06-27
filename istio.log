@@ -1,0 +1,487 @@
+2024-06-27T14:08:43.305705Z	info	FLAG: --caCertFile=""
+2024-06-27T14:08:43.305718Z	info	FLAG: --clusterAliases="[]"
+2024-06-27T14:08:43.305719Z	info	FLAG: --clusterID="Kubernetes"
+2024-06-27T14:08:43.305720Z	info	FLAG: --clusterRegistriesNamespace="istio-system"
+2024-06-27T14:08:43.305721Z	info	FLAG: --cniNamespace="istio-system"
+2024-06-27T14:08:43.305721Z	info	FLAG: --configDir=""
+2024-06-27T14:08:43.305722Z	info	FLAG: --ctrlz_address="localhost"
+2024-06-27T14:08:43.305723Z	info	FLAG: --ctrlz_port="9876"
+2024-06-27T14:08:43.305724Z	info	FLAG: --domain="cluster.local"
+2024-06-27T14:08:43.305725Z	info	FLAG: --grpcAddr=":15010"
+2024-06-27T14:08:43.305726Z	info	FLAG: --help="false"
+2024-06-27T14:08:43.305727Z	info	FLAG: --httpAddr=":8080"
+2024-06-27T14:08:43.305728Z	info	FLAG: --httpsAddr=":15017"
+2024-06-27T14:08:43.305729Z	info	FLAG: --keepaliveInterval="30s"
+2024-06-27T14:08:43.305730Z	info	FLAG: --keepaliveMaxServerConnectionAge="30m0s"
+2024-06-27T14:08:43.305731Z	info	FLAG: --keepaliveTimeout="10s"
+2024-06-27T14:08:43.305732Z	info	FLAG: --kubeconfig=""
+2024-06-27T14:08:43.305733Z	info	FLAG: --kubernetesApiBurst="160"
+2024-06-27T14:08:43.305735Z	info	FLAG: --kubernetesApiQPS="80"
+2024-06-27T14:08:43.305737Z	info	FLAG: --log_as_json="false"
+2024-06-27T14:08:43.305738Z	info	FLAG: --log_caller=""
+2024-06-27T14:08:43.305738Z	info	FLAG: --log_output_level="default:info"
+2024-06-27T14:08:43.305739Z	info	FLAG: --log_rotate=""
+2024-06-27T14:08:43.305740Z	info	FLAG: --log_rotate_max_age="30"
+2024-06-27T14:08:43.305741Z	info	FLAG: --log_rotate_max_backups="1000"
+2024-06-27T14:08:43.305742Z	info	FLAG: --log_rotate_max_size="104857600"
+2024-06-27T14:08:43.305743Z	info	FLAG: --log_stacktrace_level="default:none"
+2024-06-27T14:08:43.305745Z	info	FLAG: --log_target="[stdout]"
+2024-06-27T14:08:43.305746Z	info	FLAG: --meshConfig="./etc/istio/config/mesh"
+2024-06-27T14:08:43.305747Z	info	FLAG: --monitoringAddr=":15014"
+2024-06-27T14:08:43.305748Z	info	FLAG: --namespace="istio-system"
+2024-06-27T14:08:43.305749Z	info	FLAG: --networksConfig="./etc/istio/config/meshNetworks"
+2024-06-27T14:08:43.305750Z	info	FLAG: --profile="true"
+2024-06-27T14:08:43.305752Z	info	FLAG: --registries="[Kubernetes]"
+2024-06-27T14:08:43.305753Z	info	FLAG: --secureGRPCAddr=":15012"
+2024-06-27T14:08:43.305754Z	info	FLAG: --shutdownDuration="10s"
+2024-06-27T14:08:43.305756Z	info	FLAG: --tls-cipher-suites="[]"
+2024-06-27T14:08:43.305757Z	info	FLAG: --tlsCertFile=""
+2024-06-27T14:08:43.305758Z	info	FLAG: --tlsKeyFile=""
+2024-06-27T14:08:43.305759Z	info	FLAG: --vklog="0"
+2024-06-27T14:08:43.309841Z	info	initializing Istiod admin server
+2024-06-27T14:08:43.310100Z	info	starting HTTP service at [::]:8080
+2024-06-27T14:08:43.310414Z	info	initializing mesh configuration ./etc/istio/config/mesh
+2024-06-27T14:08:43.317113Z	info	controllers	starting	controller=configmap istio
+2024-06-27T14:08:43.317358Z	info	Loaded MeshNetworks config from Kubernetes API server.
+2024-06-27T14:08:43.317373Z	info	mesh networks configuration updated to: {
+
+}
+2024-06-27T14:08:43.319803Z	info	Loaded MeshConfig config from Kubernetes API server.
+2024-06-27T14:08:43.320244Z	info	mesh configuration updated to: {
+    "proxyListenPort": 15001,
+    "proxyInboundListenPort": 15006,
+    "connectTimeout": "10s",
+    "protocolDetectionTimeout": "0s",
+    "ingressClass": "istio",
+    "ingressService": "istio-ingressgateway",
+    "ingressControllerMode": "STRICT",
+    "enableTracing": true,
+    "defaultConfig": {
+        "configPath": "./etc/istio/proxy",
+        "binaryPath": "/usr/local/bin/envoy",
+        "serviceCluster": "istio-proxy",
+        "drainDuration": "45s",
+        "discoveryAddress": "istiod.istio-system.svc:15012",
+        "proxyAdminPort": 15000,
+        "controlPlaneAuthPolicy": "MUTUAL_TLS",
+        "statNameLength": 189,
+        "statusPort": 15020,
+        "terminationDrainDuration": "5s"
+    },
+    "outboundTrafficPolicy": {
+        "mode": "ALLOW_ANY"
+    },
+    "inboundTrafficPolicy": {
+
+    },
+    "enableAutoMtls": true,
+    "trustDomain": "cluster.local",
+    "defaultServiceExportTo": [
+        "*"
+    ],
+    "defaultVirtualServiceExportTo": [
+        "*"
+    ],
+    "defaultDestinationRuleExportTo": [
+        "*"
+    ],
+    "rootNamespace": "istio-system",
+    "localityLbSetting": {
+        "enabled": true
+    },
+    "dnsRefreshRate": "60s",
+    "enablePrometheusMerge": true,
+    "extensionProviders": [
+        {
+            "name": "prometheus",
+            "prometheus": {
+
+            }
+        },
+        {
+            "name": "stackdriver",
+            "stackdriver": {
+
+            }
+        },
+        {
+            "name": "envoy",
+            "envoyFileAccessLog": {
+                "path": "/dev/stdout"
+            }
+        }
+    ],
+    "defaultProviders": {
+        "metrics": [
+            "prometheus"
+        ]
+    }
+}
+2024-06-27T14:08:43.325200Z	info	initializing mesh networks from mesh config watcher
+2024-06-27T14:08:43.325335Z	info	mesh configuration: {
+    "proxyListenPort": 15001,
+    "proxyInboundListenPort": 15006,
+    "connectTimeout": "10s",
+    "protocolDetectionTimeout": "0s",
+    "ingressClass": "istio",
+    "ingressService": "istio-ingressgateway",
+    "ingressControllerMode": "STRICT",
+    "enableTracing": true,
+    "defaultConfig": {
+        "configPath": "./etc/istio/proxy",
+        "binaryPath": "/usr/local/bin/envoy",
+        "serviceCluster": "istio-proxy",
+        "drainDuration": "45s",
+        "discoveryAddress": "istiod.istio-system.svc:15012",
+        "proxyAdminPort": 15000,
+        "controlPlaneAuthPolicy": "MUTUAL_TLS",
+        "statNameLength": 189,
+        "statusPort": 15020,
+        "terminationDrainDuration": "5s"
+    },
+    "outboundTrafficPolicy": {
+        "mode": "ALLOW_ANY"
+    },
+    "inboundTrafficPolicy": {
+
+    },
+    "enableAutoMtls": true,
+    "trustDomain": "cluster.local",
+    "defaultServiceExportTo": [
+        "*"
+    ],
+    "defaultVirtualServiceExportTo": [
+        "*"
+    ],
+    "defaultDestinationRuleExportTo": [
+        "*"
+    ],
+    "rootNamespace": "istio-system",
+    "localityLbSetting": {
+        "enabled": true
+    },
+    "dnsRefreshRate": "60s",
+    "enablePrometheusMerge": true,
+    "extensionProviders": [
+        {
+            "name": "prometheus",
+            "prometheus": {
+
+            }
+        },
+        {
+            "name": "stackdriver",
+            "stackdriver": {
+
+            }
+        },
+        {
+            "name": "envoy",
+            "envoyFileAccessLog": {
+                "path": "/dev/stdout"
+            }
+        }
+    ],
+    "defaultProviders": {
+        "metrics": [
+            "prometheus"
+        ]
+    }
+}
+2024-06-27T14:08:43.325341Z	info	version: 1.22.1-a1a76b8e75f810eb6c808b04531343ae2c7b8082-Clean
+2024-06-27T14:08:43.325635Z	info	flags: {
+   "ServerOptions": {
+      "HTTPAddr": ":8080",
+      "HTTPSAddr": ":15017",
+      "GRPCAddr": ":15010",
+      "MonitoringAddr": ":15014",
+      "EnableProfiling": true,
+      "TLSOptions": {
+         "CaCertFile": "",
+         "CertFile": "",
+         "KeyFile": "",
+         "TLSCipherSuites": null,
+         "CipherSuits": null
+      },
+      "SecureGRPCAddr": ":15012"
+   },
+   "InjectionOptions": {
+      "InjectionDirectory": "./var/lib/istio/inject"
+   },
+   "PodName": "istiod-6f4c9d5759-7x6xz",
+   "Namespace": "istio-system",
+   "CniNamespace": "istio-system",
+   "Revision": "default",
+   "MeshConfigFile": "./etc/istio/config/mesh",
+   "NetworksConfigFile": "./etc/istio/config/meshNetworks",
+   "RegistryOptions": {
+      "FileDir": "",
+      "Registries": [
+         "Kubernetes"
+      ],
+      "KubeOptions": {
+         "SystemNamespace": "",
+         "MeshServiceController": null,
+         "DomainSuffix": "cluster.local",
+         "ClusterID": "Kubernetes",
+         "ClusterAliases": {},
+         "Metrics": null,
+         "XDSUpdater": null,
+         "MeshNetworksWatcher": null,
+         "MeshWatcher": null,
+         "KubernetesAPIQPS": 80,
+         "KubernetesAPIBurst": 160,
+         "SyncTimeout": 0,
+         "Revision": "",
+         "ConfigCluster": false,
+         "CniNamespace": ""
+      },
+      "ClusterRegistriesNamespace": "istio-system",
+      "KubeConfig": "",
+      "DistributionCacheRetention": 60000000000,
+      "DistributionTrackingEnabled": false
+   },
+   "CtrlZOptions": {
+      "Port": 9876,
+      "Address": "localhost",
+      "EnablePprof": false
+   },
+   "KeepaliveOptions": {
+      "Time": 30000000000,
+      "Timeout": 10000000000,
+      "MaxServerConnectionAge": 1800000000000,
+      "MaxServerConnectionAgeGrace": 10000000000
+   },
+   "ShutdownDuration": 10000000000,
+   "JwtRule": ""
+}
+2024-06-27T14:08:43.328265Z	info	initializing mesh handlers
+2024-06-27T14:08:43.328336Z	info	model	reloading network gateways
+2024-06-27T14:08:43.328347Z	info	creating CA and initializing public key
+2024-06-27T14:08:43.328362Z	info	Using istiod file format for signing ca files
+2024-06-27T14:08:43.328371Z	info	Use self-signed certificate as the CA certificate
+2024-06-27T14:08:43.331211Z	info	pkica	CASecret istio-ca-secret not found, will create one
+2024-06-27T14:08:43.411925Z	info	pkica	Using self-generated public key: -----BEGIN CERTIFICATE-----
+MIIC/TCCAeWgAwIBAgIRAPBi5TLME7nSW2EgFZlnR54wDQYJKoZIhvcNAQELBQAw
+GDEWMBQGA1UEChMNY2x1c3Rlci5sb2NhbDAeFw0yNDA2MjcxNDA4NDNaFw0zNDA2
+MjUxNDA4NDNaMBgxFjAUBgNVBAoTDWNsdXN0ZXIubG9jYWwwggEiMA0GCSqGSIb3
+DQEBAQUAA4IBDwAwggEKAoIBAQCxC7U7dvkTZnFhTbRD9eVoRsmXzfDCYnIauPoF
+Al0DRvMiQaImqNZXTP+BPrLOirdxUjkaGDJsxNyf7S6cSOW/qgFUZEv6sLAkxmys
+O73covIW/L9+/uyZQhHPJfq56ophv0zaBHa3QdMHrSWnPB/LHNLP364z0xGn0pKl
+NEr7HQy45XxQl1Kf8XeVbDTXKXexojj6jPYn3xmhLeil3Xq1yklKCSBZ9dyOlKuV
+pVJ+jMNsBoJq7gmyAVtj6GyAVEVi3e9p0uwmNJgbHuhgS3o3XbqeI3Y6NCJsk4H8
+RUiRx6aYR+8jMQLYE7Yq0K9VIE/D5Vu4Pt66hVyqM2Nc0X3zAgMBAAGjQjBAMA4G
+A1UdDwEB/wQEAwICBDAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBRxMj+jfaXW
+768BQQwG8Tqv55W+tDANBgkqhkiG9w0BAQsFAAOCAQEAmOZmwcLwYQkviGrNrBf+
+j5fG9V4NzFbsCvN5mUjcHt1ILXJTjMv9oQ/lQ0wF6EqOF/JyH65Xu4CbxBS4M9Q9
+bim+um12c8VUajy/NbeFKF4aythChQ7aqE9sV7ABRn/TAIZUbAlkmMN4aGNt1su6
+T3/n6HjZgNqCqeJbCMVIqzEiKia1jWRZb+Zm6SBJNf3/GwYJh7oudbnCds9Tczks
+DvgaNF6zqlTphykfQ0PdtziL6Aq4tbkNrlBDRlo0k/UBzSqDFJ0QbTgpvjB0+ooM
+x3gl/Q1wVefsxOAWjW+slR4YLlxr8qSmf9nTMmDJX/afGGSfY2H/pEU1+FcRnr1J
+zQ==
+-----END CERTIFICATE-----
+
+2024-06-27T14:08:43.411934Z	info	pkica	Set secret name for self-signed CA cert rotator to istio-ca-secret
+2024-06-27T14:08:43.411944Z	info	rootcertrotator	Set up back off time 5m53s to start rotator.
+2024-06-27T14:08:43.411950Z	info	initializing controllers
+2024-06-27T14:08:43.412056Z	info	rootcertrotator	Jitter is enabled, wait 5m53s before starting root cert rotator.
+2024-06-27T14:08:43.412129Z	info	Adding Kubernetes registry adapter
+2024-06-27T14:08:43.412140Z	info	Discover server subject alt names: [istio-pilot.istio-system.svc istiod-remote.istio-system.svc istiod.istio-system.svc]
+2024-06-27T14:08:43.412153Z	info	initializing Istiod DNS certificates host: istiod.istio-system.svc, custom host: 
+2024-06-27T14:08:43.471410Z	info	Generating istiod-signed cert for [istio-pilot.istio-system.svc istiod-remote.istio-system.svc istiod.istio-system.svc]:
+ -----BEGIN CERTIFICATE-----
+MIIDajCCAlKgAwIBAgIRANe+biPh5R5Z3IpUODiP9NkwDQYJKoZIhvcNAQELBQAw
+GDEWMBQGA1UEChMNY2x1c3Rlci5sb2NhbDAeFw0yNDA2MjcxNDA2NDNaFw0zNDA2
+MjUxNDA4NDNaMAAwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC3VvE/
+EiCQMenXJR8U23Izp4yVjURIJJ6L7oKDgfEBoumj3Yp3Q5nLdcpx4GWE9iKS8pxI
+w3dBLsW3hhXVzQLSaDEg7mpARPNEHab+aubc9QQ1/Gspwp+fMau6qVkeXdiNzcuQ
+HR1em+uj1k+Ep3YNjS1S9zQSYEW8DI/rxCToCCT94vq1AqQSrXV6h9jiIgPyoYU4
+Ru2Dk4DfVGWfHZyDQ0hSw/o1iIiqm9Lmu9MgxO9bKuMxwphS+VdOWtg++3DtxUMx
+sl0Q2Cp5PImExFs7F4SmPNUlIXqymS/74HCjUVjUjtfkUb2VCKhXaj3tVQmGH9P+
+9jfQnjxnTTTcOlldAgMBAAGjgcYwgcMwDgYDVR0PAQH/BAQDAgWgMB0GA1UdJQQW
+MBQGCCsGAQUFBwMBBggrBgEFBQcDAjAMBgNVHRMBAf8EAjAAMB8GA1UdIwQYMBaA
+FHEyP6N9pdbvrwFBDAbxOq/nlb60MGMGA1UdEQEB/wRZMFeCHGlzdGlvLXBpbG90
+LmlzdGlvLXN5c3RlbS5zdmOCHmlzdGlvZC1yZW1vdGUuaXN0aW8tc3lzdGVtLnN2
+Y4IXaXN0aW9kLmlzdGlvLXN5c3RlbS5zdmMwDQYJKoZIhvcNAQELBQADggEBAJi5
+kS4AnhUm6ix7poiJtSijVfcVFZUo2bM9zpuu5DBL+rNETJ4DCku0SJ1Ky71AItUf
+PKEE/fGm8YNBFiYSVuF5pj/5WX4Booal0lnWAm4/2XE1iGZztj5B/nC6iWjE4cMF
+T956MH9g7GBn+0WHd/6ignrbEzj7hP3kRBfWXH1kfI6t0CGqIrSk910hKByEIkoQ
+26RU4cIhUkp01cAjgVCe6ptDYlfJ4xYE/1+2+HgpdtJqW5NyaF5XXi1bTgJvk8Dl
+umJyEYUft5JRYDeYoEt5scsRhSdEucWJPG9yxm4UrEYnyWwfZA8VdfVm/kWFYkIH
+vQesq1/txulOpktxsDs=
+-----END CERTIFICATE-----
+
+2024-06-27T14:08:43.471423Z	info	Using istiod file format for signing ca files
+2024-06-27T14:08:43.471426Z	info	Use istio-generated cacerts at etc/cacerts/ca-key.pem or istio-ca-secret
+2024-06-27T14:08:43.471480Z	info	x509 cert - Issuer: "O=cluster.local", Subject: "", SN: d7be6e23e1e51e59dc8a5438388ff4d9, NotBefore: "2024-06-27T14:06:43Z", NotAfter: "2034-06-25T14:08:43Z"
+2024-06-27T14:08:43.471481Z	info	Istiod certificates are reloaded
+2024-06-27T14:08:43.471500Z	info	spiffe	Added 1 certs to trust domain cluster.local in peer cert verifier
+2024-06-27T14:08:43.471501Z	info	initializing secure discovery service
+2024-06-27T14:08:43.471518Z	info	initializing secure webhook server for istiod webhooks
+2024-06-27T14:08:43.473204Z	info	initializing sidecar injector
+2024-06-27T14:08:43.477966Z	info	initializing config validator
+2024-06-27T14:08:43.477977Z	info	initializing registry event handlers
+2024-06-27T14:08:43.477990Z	info	starting discovery service
+2024-06-27T14:08:43.477992Z	info	initializing CA server with IstioD CA
+2024-06-27T14:08:43.478532Z	info	Starting Istiod Server with primary cluster Kubernetes
+2024-06-27T14:08:43.478590Z	info	ControlZ available at 127.0.0.1:9876
+2024-06-27T14:08:43.478777Z	info	kube	Initializing Kubernetes service registry "Kubernetes"
+2024-06-27T14:08:43.478850Z	info	status	Starting status manager
+2024-06-27T14:08:43.478893Z	info	Starting validation controller
+2024-06-27T14:08:43.478907Z	info	Starting ADS server
+2024-06-27T14:08:43.478910Z	info	starting CA server
+2024-06-27T14:08:43.478917Z	info	klog	attempting to acquire leader lease istio-system/istio-gateway-deployment-default...
+2024-06-27T14:08:43.478939Z	info	Istiod CA has started
+2024-06-27T14:08:43.478958Z	info	cluster "Kubernetes" kube client started
+2024-06-27T14:08:43.478936Z	info	kube	Starting Pilot K8S CRD controller	controller=crd-controller
+2024-06-27T14:08:43.478986Z	info	kube	controller "networking.istio.io/v1alpha3/Sidecar" is syncing...	controller=crd-controller
+2024-06-27T14:08:43.479004Z	info	Starting multicluster remote secrets controller
+2024-06-27T14:08:43.479012Z	info	klog	attempting to acquire leader lease istio-system/istio-leader...
+2024-06-27T14:08:43.479257Z	info	controllers	starting	controller=healthcheck
+2024-06-27T14:08:43.479296Z	info	controllers	starting	controller=auto-register existing connections
+2024-06-27T14:08:43.479300Z	info	controllers	starting	controller=unregister_workloadentry
+2024-06-27T14:08:43.479315Z	info	klog	attempting to acquire leader lease istio-system/istio-gateway-status-leader...
+2024-06-27T14:08:43.480987Z	info	controllers	starting	controller=ingress
+2024-06-27T14:08:43.481007Z	info	kube	kube controller for Kubernetes synced after 2.066483ms
+2024-06-27T14:08:43.481010Z	info	controllers	starting	controller=crd watcher
+2024-06-27T14:08:43.481029Z	info	model	Full push, new service default/kubernetes.default.svc.cluster.local
+2024-06-27T14:08:43.481040Z	info	authorizationpolicies.security.istio.io is now ready, building client
+2024-06-27T14:08:43.481049Z	info	multicluster remote secrets controller cache synced in 2.052835ms
+2024-06-27T14:08:43.481051Z	info	controllers	starting	controller=multicluster secret
+2024-06-27T14:08:43.481056Z	info	destinationrules.networking.istio.io is now ready, building client
+2024-06-27T14:08:43.481059Z	info	controllers	starting	controller=webhook patcher
+2024-06-27T14:08:43.481063Z	info	controllers	starting	controller=default revision
+2024-06-27T14:08:43.481059Z	info	kube	controller "networking.istio.io/v1alpha3/ServiceEntry" is syncing...	controller=crd-controller
+2024-06-27T14:08:43.481064Z	info	envoyfilters.networking.istio.io is now ready, building client
+2024-06-27T14:08:43.481040Z	info	model	Full push, new service istio-system/istiod.istio-system.svc.cluster.local
+2024-06-27T14:08:43.481100Z	info	gateways.networking.istio.io is now ready, building client
+2024-06-27T14:08:43.481116Z	info	peerauthentications.security.istio.io is now ready, building client
+2024-06-27T14:08:43.481132Z	info	model	Full push, new service kube-system/kube-dns.kube-system.svc.cluster.local
+2024-06-27T14:08:43.481138Z	info	proxyconfigs.networking.istio.io is now ready, building client
+2024-06-27T14:08:43.481156Z	info	requestauthentications.security.istio.io is now ready, building client
+2024-06-27T14:08:43.481169Z	info	serviceentries.networking.istio.io is now ready, building client
+2024-06-27T14:08:43.481180Z	info	sidecars.networking.istio.io is now ready, building client
+2024-06-27T14:08:43.481191Z	info	telemetries.telemetry.istio.io is now ready, building client
+2024-06-27T14:08:43.481201Z	info	virtualservices.networking.istio.io is now ready, building client
+2024-06-27T14:08:43.481210Z	info	wasmplugins.extensions.istio.io is now ready, building client
+2024-06-27T14:08:43.481224Z	info	workloadentries.networking.istio.io is now ready, building client
+2024-06-27T14:08:43.481234Z	info	workloadgroups.networking.istio.io is now ready, building client
+2024-06-27T14:08:43.481454Z	info	controllers	starting	controller=default revision
+2024-06-27T14:08:43.481459Z	info	controllers	starting	controller=default revision
+2024-06-27T14:08:43.481459Z	info	controllers	starting	controller=validation
+2024-06-27T14:08:43.483041Z	info	klog	successfully acquired lease istio-system/istio-gateway-deployment-default
+2024-06-27T14:08:43.483102Z	info	leader election lock obtained: istio-gateway-deployment-default
+2024-06-27T14:08:43.484977Z	info	klog	successfully acquired lease istio-system/istio-leader
+2024-06-27T14:08:43.485002Z	info	klog	successfully acquired lease istio-system/istio-gateway-status-leader
+2024-06-27T14:08:43.485033Z	info	leader election lock obtained: istio-gateway-status-leader
+2024-06-27T14:08:43.485039Z	info	Starting gateway status writer
+2024-06-27T14:08:43.485044Z	info	leader election lock obtained: istio-leader
+2024-06-27T14:08:43.485059Z	info	controllers	starting	controller=configmap istio-sidecar-injector
+2024-06-27T14:08:43.485066Z	info	Waiting for caches to be synced
+2024-06-27T14:08:43.485074Z	info	kube	joining leader-election for istio-namespace-controller-election in istio-system on cluster Kubernetes
+2024-06-27T14:08:43.485084Z	info	kube	Pilot K8S CRD controller synced in 6.147504ms	controller=crd-controller
+2024-06-27T14:08:43.485111Z	info	Starting ingress controller
+2024-06-27T14:08:43.485113Z	info	controllers	starting	controller=ingress status
+2024-06-27T14:08:43.485116Z	info	klog	attempting to acquire leader lease istio-system/istio-namespace-controller-election...
+2024-06-27T14:08:43.485119Z	info	controllers	starting	controller=default revision
+2024-06-27T14:08:43.485266Z	info	validationController	Not ready to switch validation to fail-closed: dummy invalid config not rejected
+2024-06-27T14:08:43.487474Z	info	All controller caches have been synced up in 2.400667ms
+2024-06-27T14:08:43.497378Z	info	validationController	successfully updated	name=istio-validator-istio-system fail closed=false resource version=670
+2024-06-27T14:08:43.497393Z	error	controllers	error handling istio-validator-istio-system, retrying (retry count: 1): webhook is not ready, retry	controller=validation
+2024-06-27T14:08:43.500998Z	info	klog	successfully acquired lease istio-system/istio-namespace-controller-election
+2024-06-27T14:08:43.501088Z	info	leader election lock obtained: istio-namespace-controller-election
+2024-06-27T14:08:43.501140Z	info	kube	starting namespace controller for cluster Kubernetes
+2024-06-27T14:08:43.501471Z	info	validationController	Not ready to switch validation to fail-closed: dummy invalid config not rejected
+2024-06-27T14:08:43.501483Z	info	validationController	up-to-date, no change required	name=istio-validator-istio-system fail closed=false resource version=670
+2024-06-27T14:08:43.501491Z	error	controllers	error handling istio-validator-istio-system, retrying (retry count: 2): webhook is not ready, retry	controller=validation
+2024-06-27T14:08:43.585684Z	info	ads	Push debounce stable[1] 10 for reason service:3 and 3(7) more reasons: 100.579459ms since last change, 105.29349ms since last push, full=true
+2024-06-27T14:08:43.585995Z	info	ads	XDS: Pushing Services:3 ConnectedEndpoints:0 Version:2024-06-27T14:08:43Z/1
+2024-06-27T14:08:43.602290Z	info	controllers	starting	controller=namespace controller
+2024-06-27T14:08:43.604130Z	info	validationController	Not ready to switch validation to fail-closed: dummy invalid config not rejected
+2024-06-27T14:08:43.604167Z	info	validationController	up-to-date, no change required	name=istio-validator-istio-system fail closed=false resource version=670
+2024-06-27T14:08:43.604195Z	error	controllers	error handling istio-validator-istio-system, retrying (retry count: 3): webhook is not ready, retry	controller=validation
+2024-06-27T14:08:43.615240Z	info	ads	All caches have been synced up in 312.11981ms, marking server ready
+2024-06-27T14:08:43.615372Z	info	starting secure gRPC discovery service at [::]:15012
+2024-06-27T14:08:43.615436Z	info	starting webhook service at [::]:15017
+2024-06-27T14:08:43.615492Z	info	starting gRPC discovery service at [::]:15010
+2024-06-27T14:08:44.011522Z	info	validationController	Not ready to switch validation to fail-closed: dummy invalid config not rejected
+2024-06-27T14:08:44.011561Z	info	validationController	up-to-date, no change required	name=istio-validator-istio-system fail closed=false resource version=670
+2024-06-27T14:08:44.011580Z	error	controllers	error handling istio-validator-istio-system, retrying (retry count: 4): webhook is not ready, retry	controller=validation
+2024-06-27T14:08:44.307307Z	info	ads	Push debounce stable[2] 1 for config ServiceEntry/istio-system/istiod.istio-system.svc.cluster.local: 100.464695ms since last change, 100.464513ms since last push, full=false
+2024-06-27T14:08:44.307450Z	info	ads	XDS: Incremental Pushing ConnectedEndpoints:0 Version:2024-06-27T14:08:43Z/1
+2024-06-27T14:08:44.555151Z	info	model	Incremental push, service istio-ingressgateway.istio-system.svc.cluster.local at shard Kubernetes/Kubernetes has no endpoints
+2024-06-27T14:08:44.656205Z	info	ads	Push debounce stable[3] 2 for config ServiceEntry/istio-system/istio-ingressgateway.istio-system.svc.cluster.local: 100.946917ms since last change, 112.65149ms since last push, full=true
+2024-06-27T14:08:44.656461Z	info	ads	XDS: Pushing Services:4 ConnectedEndpoints:0 Version:2024-06-27T14:08:44Z/2
+2024-06-27T14:08:44.826416Z	info	validationServer	configuration is invalid: "internal.istio.io/webhook-always-reject" annotation found, rejecting (dry run)
+2024-06-27T14:08:44.827827Z	info	validationController	Endpoint successfully rejected invalid config. Switching to fail-close.
+2024-06-27T14:08:44.837074Z	info	validationController	successfully updated	name=istio-validator-istio-system fail closed=true resource version=712
+2024-06-27T14:08:44.837124Z	info	validationController	up-to-date, no change required	name=istio-validator-istio-system fail closed=true resource version=712
+2024-06-27T14:08:52.936014Z	info	delta	ADS: new delta connection for node:istio-ingressgateway-bdd5f64f7-p5g2c.istio-system-1
+2024-06-27T14:08:52.936280Z	info	delta	CDS: PUSH request for node:istio-ingressgateway-bdd5f64f7-p5g2c.istio-system resources:11 removed:0 size:10.8kB cached:0/10
+2024-06-27T14:08:52.939197Z	info	delta	EDS: PUSH request for node:istio-ingressgateway-bdd5f64f7-p5g2c.istio-system resources:10 removed:0 size:1.5kB empty:3 cached:0/10 filtered:0
+2024-06-27T14:08:52.951428Z	info	delta	LDS: PUSH request for node:istio-ingressgateway-bdd5f64f7-p5g2c.istio-system resources:0 removed:0 size:0B
+2024-06-27T14:08:53.193747Z	info	model	Full push, new service istio-system/istio-ingressgateway.istio-system.svc.cluster.local
+2024-06-27T14:08:53.211045Z	info	delta	CDS: PUSH for node:istio-ingressgateway-bdd5f64f7-p5g2c.istio-system resources:11 removed:0 size:10.8kB cached:0/10
+2024-06-27T14:08:53.211418Z	info	delta	EDS: PUSH for node:istio-ingressgateway-bdd5f64f7-p5g2c.istio-system resources:10 removed:0 size:1.5kB empty:3 cached:0/10
+2024-06-27T14:08:53.211480Z	info	delta	LDS: PUSH for node:istio-ingressgateway-bdd5f64f7-p5g2c.istio-system resources:0 removed:0 size:0B
+2024-06-27T14:08:53.329545Z	info	ads	Push debounce stable[4] 2 for config ServiceEntry/istio-system/istio-ingressgateway.istio-system.svc.cluster.local: 100.853956ms since last change, 135.640521ms since last push, full=true
+2024-06-27T14:08:53.329869Z	info	ads	XDS: Pushing Services:4 ConnectedEndpoints:1 Version:2024-06-27T14:08:53Z/3
+2024-06-27T14:08:53.330537Z	info	delta	CDS: PUSH for node:istio-ingressgateway-bdd5f64f7-p5g2c.istio-system resources:4 removed:0 size:3.6kB cached:0/3
+2024-06-27T14:08:53.330719Z	info	delta	EDS: PUSH INC for node:istio-ingressgateway-bdd5f64f7-p5g2c.istio-system resources:3 removed:0 size:601B empty:0 cached:0/3
+2024-06-27T14:08:53.330769Z	info	delta	LDS: PUSH for node:istio-ingressgateway-bdd5f64f7-p5g2c.istio-system resources:0 removed:0 size:0B
+2024-06-27T14:08:55.832531Z	info	validationController	successfully updated	name=istiod-default-validator fail closed=true resource version=751
+2024-06-27T14:08:55.832651Z	info	validationController	up-to-date, no change required	name=istiod-default-validator fail closed=true resource version=751
+2024-06-27T14:09:01.042036Z	info	Sidecar injection request for default/server-5cd8645bf7-***** (actual name not yet known)
+2024-06-27T14:09:01.057625Z	info	model	Incremental push, service server.default.svc.cluster.local at shard Kubernetes/Kubernetes has no endpoints
+2024-06-27T14:09:01.129639Z	info	Sidecar injection request for default/client-798ff97d8d-***** (actual name not yet known)
+2024-06-27T14:09:01.159729Z	info	ads	Push debounce stable[5] 3 for config ServiceEntry/default/server.default.svc.cluster.local and 1 more configs: 101.010272ms since last change, 119.893279ms since last push, full=true
+2024-06-27T14:09:01.159885Z	info	ads	XDS: Pushing Services:5 ConnectedEndpoints:1 Version:2024-06-27T14:09:01Z/4
+2024-06-27T14:09:01.160126Z	info	delta	CDS: PUSH for node:istio-ingressgateway-bdd5f64f7-p5g2c.istio-system resources:12 removed:0 size:12.0kB cached:10/11
+2024-06-27T14:09:01.160176Z	info	delta	EDS: PUSH for node:istio-ingressgateway-bdd5f64f7-p5g2c.istio-system resources:10 removed:0 size:1.9kB empty:0 cached:10/10
+2024-06-27T14:09:01.160197Z	info	delta	LDS: PUSH for node:istio-ingressgateway-bdd5f64f7-p5g2c.istio-system resources:0 removed:0 size:0B
+2024-06-27T14:09:01.164079Z	info	delta	EDS: PUSH request for node:istio-ingressgateway-bdd5f64f7-p5g2c.istio-system resources:1 removed:0 size:47B empty:1 cached:0/1 filtered:10
+2024-06-27T14:09:02.231858Z	info	model	Full push, new service default/server.default.svc.cluster.local
+2024-06-27T14:09:02.332266Z	info	ads	Push debounce stable[6] 1 for config ServiceEntry/default/server.default.svc.cluster.local: 100.32607ms since last change, 100.325971ms since last push, full=true
+2024-06-27T14:09:02.332472Z	info	ads	XDS: Pushing Services:5 ConnectedEndpoints:1 Version:2024-06-27T14:09:02Z/5
+2024-06-27T14:09:02.332737Z	info	delta	CDS: PUSH for node:istio-ingressgateway-bdd5f64f7-p5g2c.istio-system resources:2 removed:0 size:1.0kB cached:0/1
+2024-06-27T14:09:02.332784Z	info	delta	EDS: PUSH INC for node:istio-ingressgateway-bdd5f64f7-p5g2c.istio-system resources:1 removed:0 size:47B empty:1 cached:0/1
+2024-06-27T14:09:02.332803Z	info	delta	LDS: PUSH for node:istio-ingressgateway-bdd5f64f7-p5g2c.istio-system resources:0 removed:0 size:0B
+2024-06-27T14:09:02.741369Z	info	delta	ADS: new delta connection for node:client-798ff97d8d-ps68v.default-2
+2024-06-27T14:09:02.741541Z	info	delta	CDS: PUSH request for node:client-798ff97d8d-ps68v.default resources:14 removed:0 size:13.2kB cached:0/11
+2024-06-27T14:09:02.745924Z	info	delta	EDS: PUSH request for node:client-798ff97d8d-ps68v.default resources:11 removed:0 size:1.9kB empty:1 cached:0/11 filtered:0
+2024-06-27T14:09:02.753020Z	info	delta	ADS: new delta connection for node:server-5cd8645bf7-pqqn9.default-3
+2024-06-27T14:09:02.753160Z	info	delta	CDS: PUSH request for node:server-5cd8645bf7-pqqn9.default resources:15 removed:0 size:13.3kB cached:0/11
+2024-06-27T14:09:02.756386Z	info	delta	EDS: PUSH request for node:server-5cd8645bf7-pqqn9.default resources:11 removed:0 size:1.9kB empty:1 cached:0/11 filtered:0
+2024-06-27T14:09:02.812729Z	info	delta	LDS: PUSH request for node:server-5cd8645bf7-pqqn9.default resources:13 removed:0 size:30.3kB
+2024-06-27T14:09:02.814984Z	info	delta	LDS: PUSH request for node:client-798ff97d8d-ps68v.default resources:13 removed:0 size:25.6kB
+2024-06-27T14:09:02.819905Z	info	delta	RDS: PUSH request for node:server-5cd8645bf7-pqqn9.default resources:6 removed:0 size:3.7kB cached:0/6 filtered:0
+2024-06-27T14:09:02.821041Z	info	delta	RDS: PUSH request for node:client-798ff97d8d-ps68v.default resources:6 removed:0 size:3.7kB cached:0/6 filtered:0
+2024-06-27T14:09:03.480058Z	info	ads	Push Status: {
+    "pilot_eds_no_instances": {
+        "outbound|80||server.default.svc.cluster.local": {}
+    }
+}
+2024-06-27T14:09:04.252767Z	info	delta	CDS: PUSH for node:server-5cd8645bf7-pqqn9.default resources:15 removed:0 size:13.3kB cached:0/11
+2024-06-27T14:09:04.253068Z	info	delta	EDS: PUSH for node:server-5cd8645bf7-pqqn9.default resources:11 removed:0 size:1.9kB empty:1 cached:0/11
+2024-06-27T14:09:04.253798Z	info	delta	LDS: PUSH for node:server-5cd8645bf7-pqqn9.default resources:13 removed:0 size:30.3kB
+2024-06-27T14:09:04.254033Z	info	delta	RDS: PUSH for node:server-5cd8645bf7-pqqn9.default resources:6 removed:0 size:3.7kB cached:0/6
+2024-06-27T14:09:04.276344Z	info	delta	CDS: PUSH for node:client-798ff97d8d-ps68v.default resources:14 removed:0 size:13.2kB cached:10/11
+2024-06-27T14:09:04.276466Z	info	delta	EDS: PUSH for node:client-798ff97d8d-ps68v.default resources:11 removed:0 size:2.1kB empty:0 cached:10/11
+2024-06-27T14:09:04.276916Z	info	delta	LDS: PUSH for node:client-798ff97d8d-ps68v.default resources:13 removed:0 size:25.6kB
+2024-06-27T14:09:04.277027Z	info	delta	RDS: PUSH for node:client-798ff97d8d-ps68v.default resources:6 removed:0 size:3.7kB cached:4/6
+2024-06-27T14:09:04.358986Z	info	ads	Push debounce stable[7] 1 for config ServiceEntry/default/server.default.svc.cluster.local: 100.625367ms since last change, 100.625248ms since last push, full=false
+2024-06-27T14:09:04.359074Z	info	ads	XDS: Incremental Pushing ConnectedEndpoints:3 Version:2024-06-27T14:09:02Z/5
+2024-06-27T14:09:49.265772Z	info	ads	Push debounce stable[8] 1 for config Sidecar/default/server: 100.320414ms since last change, 100.320341ms since last push, full=true
+2024-06-27T14:09:49.265962Z	info	ads	XDS: Pushing Services:5 ConnectedEndpoints:3 Version:2024-06-27T14:09:49Z/6
+2024-06-27T14:09:49.266346Z	info	delta	CDS: PUSH for node:server-5cd8645bf7-pqqn9.default resources:15 removed:0 size:13.3kB cached:10/11
+2024-06-27T14:09:49.266420Z	info	delta	EDS: PUSH for node:server-5cd8645bf7-pqqn9.default resources:11 removed:0 size:2.1kB empty:0 cached:11/11
+2024-06-27T14:09:49.266894Z	info	delta	LDS: PUSH for node:server-5cd8645bf7-pqqn9.default resources:13 removed:0 size:30.3kB
+2024-06-27T14:09:49.267039Z	info	delta	RDS: PUSH for node:server-5cd8645bf7-pqqn9.default resources:6 removed:0 size:3.7kB cached:4/6
+2024-06-27T14:10:56.225106Z	info	validationServer	configuration is invalid: host must be of form namespace/dnsName
+2024-06-27T14:11:05.244019Z	info	ads	Push debounce stable[9] 1 for config Sidecar/default/server: 100.318673ms since last change, 100.318552ms since last push, full=true
+2024-06-27T14:11:05.244177Z	info	ads	XDS: Pushing Services:5 ConnectedEndpoints:3 Version:2024-06-27T14:11:05Z/7
+2024-06-27T14:11:05.244522Z	info	delta	CDS: PUSH for node:server-5cd8645bf7-pqqn9.default resources:15 removed:0 size:13.3kB cached:11/11
+2024-06-27T14:11:05.244605Z	info	delta	EDS: PUSH for node:server-5cd8645bf7-pqqn9.default resources:11 removed:0 size:2.1kB empty:0 cached:11/11
+2024-06-27T14:11:05.245074Z	info	delta	LDS: PUSH for node:server-5cd8645bf7-pqqn9.default resources:13 removed:0 size:30.3kB
+2024-06-27T14:11:05.245157Z	info	delta	RDS: PUSH for node:server-5cd8645bf7-pqqn9.default resources:6 removed:0 size:3.7kB cached:6/6
+2024-06-27T14:14:36.413202Z	info	rootcertrotator	Jitter complete, start rotator.

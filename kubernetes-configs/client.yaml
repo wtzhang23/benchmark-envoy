@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: client
-  namespace: default
+  namespace: test
   labels:
     app: client
 spec:
@@ -21,6 +21,12 @@ spec:
         args:
         - client
         - --addr
-        - server.default.svc.cluster.local:80
+        - server.test.svc.cluster.local:80
+        - --uri
+        - http://server.test.svc.cluster.local:80/
         - --rps
         - "${RPS}"
+        - --batch-period
+        - "${BATCH_PERIOD}"
+        - --pool-size
+        - "${POOL_SIZE}"
