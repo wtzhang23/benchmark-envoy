@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client
+  namespace: default
+  labels:
+    app: client
+spec:
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      labels:
+        app: client
+    spec:
+      containers:
+      - name: benchmark-envoy
+        image: benchmark-envoy/benchmark-envoy:latest
+        imagePullPolicy: IfNotPresent
+        args:
+        - client
+        - --addr
+        - server.default.svc.cluster.local:80
+        - --rps
+        - "${RPS}"

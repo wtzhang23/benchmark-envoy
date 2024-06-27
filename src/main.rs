@@ -124,13 +124,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
                     },
                     _ = second_delay => {}
                 };
+                println!(
+                    "p50: {}, p90: {}, p99: {}",
+                    humantime::format_duration(Duration::from_nanos(hist.value_at_quantile(0.50))),
+                    humantime::format_duration(Duration::from_nanos(hist.value_at_quantile(0.90))),
+                    humantime::format_duration(Duration::from_nanos(hist.value_at_quantile(0.99))),
+                )
             }
-            println!(
-                "p50: {}, p90: {}, p99: {}",
-                humantime::format_duration(Duration::from_nanos(hist.value_at_quantile(0.50))),
-                humantime::format_duration(Duration::from_nanos(hist.value_at_quantile(0.90))),
-                humantime::format_duration(Duration::from_nanos(hist.value_at_quantile(0.99))),
-            )
         }
         Mode::Server { addr, payload_size } => {
             let listener = TcpListener::bind(addr).await?;
